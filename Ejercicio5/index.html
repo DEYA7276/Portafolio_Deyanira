@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17324d">
+  <meta name="description" content="Ejercicio 5: interceptor de peticiones y manejo del estado sin conexión.">
+  <title>Ejercicio 5 · Modo sin conexión</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./index.html">PWA <span>· Ejercicio 5</span></a>
+    <nav aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      
+    </nav>
+  </header>
+
+  <main id="inicio" class="content">
+    <section class="hero">
+      <p class="eyebrow">Portafolio de ejercicios · PWA</p>
+      <h1>La app también funciona sin conexión.</h1>
+      <p>El Service Worker intercepta las peticiones, busca primero en caché y muestra una página alternativa cuando no hay red.</p>
+      <div id="connection-status" class="status" role="status" aria-live="polite">
+        <span class="status-indicator" aria-hidden="true"></span>
+        <span id="connection-message">Comprobando conexión…</span>
+      </div>
+    </section>
+
+    <section id="prueba" class="card">
+      <h2>Prueba el fallback</h2>
+      <ol>
+        <li>Abre las herramientas de desarrollo del navegador.</li>
+        <li>En la pestaña <strong>Network</strong>, selecciona <strong>Offline</strong>.</li>
+        <li>Abre el enlace. Como la ruta no está en caché y no hay red, aparecerá la vista offline.</li>
+      </ol>
+      <a class="button" href="./recurso-no-disponible.html">Simular navegación sin caché</a>
+      <p class="hint">Para probarlo, sirve esta carpeta desde localhost o HTTPS y espera a que el Service Worker termine de instalarse.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Ejercicio 5 · Interceptor de peticiones y manejo del estado offline</p>
+  </footer>
+</body>
+</html>

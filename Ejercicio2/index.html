@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi PWA</title>
+
+  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="manifest" href="manifest.json?v=2">
+  <meta name="theme-color" content="#0E3A7E">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <h1>Mi Aplicación</h1>
+  </header>
+
+  <!-- MENÚ -->
+  <nav class="menu">
+    <a href="#">Inicio</a>
+    <a href="#">Servicios</a>
+    <a href="#">Perfil</a>
+    <a href="#">Ajustes</a>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="content">
+    <div class="card">
+      <h2>Bienvenido</h2>
+      <p>Selecciona una opción del menú para continuar</p>
+    </div>
+  </main>
+
+  <!-- SERVICE WORKER -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('SW registrado:', reg.scope))
+          .catch(err => console.log('Error SW', err));
+      });
+    }
+  </script>
+
+</body>
+</html>

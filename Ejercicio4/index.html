@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#17324d">
+    <meta name="description" content="Demostración de Cache API y la estrategia de caché estática Cache-First.">
+    <title>Ejercicio 4 | Cache API · Cake Shop</title>
+    <link rel="icon" href="./img/icon-192.png" type="image/png">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="./" aria-label="Cake Shop, inicio del ejercicio">
+            <img class="brand__logo" src="./img/icon-192.png" alt="">
+            <span class="brand__name">Cake Shop <span>by Deya</span></span>
+        </a>
+        <span class="exercise-tag">PORTAFOLIO PWA <span>·</span> EJERCICIO 04</span>
+    </header>
+
+    <main>
+        <section class="hero" aria-labelledby="page-title">
+            <div class="hero__copy">
+                <p class="eyebrow"><span class="eyebrow__dot"></span> ALMACENAMIENTO ESTÁTICO</p>
+                <h1 id="page-title">App 4.</h1>
+                <p class="hero__description">
+                    Cache-First sirve los recursos del App Shell desde el almacenamiento
+                    local siempre que estén disponibles. Así, la interfaz esencial carga
+                    rápido y reduce solicitudes innecesarias al servidor.
+                </p>
+                <div class="runtime-status" aria-live="polite">
+                    <span class="status-item">
+                        <span class="status-dot" id="worker-dot"></span>
+                        <span id="worker-status">Iniciando service worker…</span>
+                    </span>
+                    <span class="status-divider" aria-hidden="true"></span>
+                    <span class="status-item">
+                        <span class="status-dot" id="network-dot"></span>
+                        <span id="network-status">Comprobando red…</span>
+                    </span>
+                </div>
+            </div>
+            <div class="cache-illustration" aria-hidden="true">
+                <div class="cache-illustration__glow"></div>
+                <div class="cache-illustration__card cache-illustration__card--back"></div>
+                <div class="cache-illustration__card cache-illustration__card--front">
+                    <span class="cache-illustration__label">APP SHELL</span>
+                    <span class="cache-illustration__line"></span>
+                    <span class="cache-illustration__line cache-illustration__line--short"></span>
+                    <span class="cache-illustration__image"><img src="./img/icon-192.png" alt=""></span>
+                    <span class="cache-illustration__check" aria-hidden="true">✓</span>
+                </div>
+                <span class="cache-illustration__spark cache-illustration__spark--one"></span>
+                <span class="cache-illustration__spark cache-illustration__spark--two"></span>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="flow-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">ESTRATEGIA</p>
+                    <h2 id="flow-title">Cómo funciona Cache-First</h2>
+                </div>
+                <p class="section-heading__note">Cada solicitud estática sigue este recorrido.</p>
+            </div>
+            <ol class="flow">
+                <li class="flow-card">
+                    <span class="flow-card__number">01</span>
+                    <span class="flow-card__icon" aria-hidden="true">↓</span>
+                    <h3>Se instala</h3>
+                    <p>En <code>install</code>, <code>cache.addAll()</code> guarda de una vez los archivos del App Shell.</p>
+                </li>
+                <li class="flow-card">
+                    <span class="flow-card__number">02</span>
+                    <span class="flow-card__icon" aria-hidden="true">⌕</span>
+                    <h3>Se busca</h3>
+                    <p>En cada <code>fetch</code>, el service worker comprueba primero si la respuesta está en caché.</p>
+                </li>
+                <li class="flow-card">
+                    <span class="flow-card__number">03</span>
+                    <span class="flow-card__icon" aria-hidden="true">↗</span>
+                    <h3>Se responde</h3>
+                    <p>Si hay una copia, se entrega. Si no, se consulta la red. La respuesta de red no se guarda aquí.</p>
+                </li>
+            </ol>
+        </section>
+
+        <section class="shell-panel" aria-labelledby="shell-title">
+            <div class="shell-panel__heading">
+                <div>
+                    <p class="eyebrow">PRECARGA EN INSTALL</p>
+                    <h2 id="shell-title">Recursos del App Shell</h2>
+                </div>
+                <span class="cache-name"><span class="cache-name__dot"></span> Cache API</span>
+            </div>
+            <ul class="resource-grid">
+                <li class="resource">
+                    <span class="resource__type">HTML</span>
+                    <span class="resource__name">index.html</span>
+                    <span class="resource__description">Estructura de la página</span>
+                </li>
+                <li class="resource">
+                    <span class="resource__type">CSS</span>
+                    <span class="resource__name">styles.css</span>
+                    <span class="resource__description">Diseño y presentación</span>
+                </li>
+                <li class="resource">
+                    <span class="resource__type">JS</span>
+                    <span class="resource__name">app.js</span>
+                    <span class="resource__description">Comportamiento de la interfaz</span>
+                </li>
+                <li class="resource">
+                    <span class="resource__type resource__type--image">IMG</span>
+                    <span class="resource__name">icon-192.png</span>
+                    <span class="resource__description">Imagen base del App Shell</span>
+                </li>
+                <li class="resource">
+                    <span class="resource__type resource__type--image">IMG</span>
+                    <span class="resource__name">icon-512.png</span>
+                    <span class="resource__description">Imagen base de alta resolución</span>
+                </li>
+            </ul>
+        </section>
+
+        <aside class="note">
+            <span class="note__icon" aria-hidden="true">i</span>
+            <p><strong>Alcance de este ejercicio:</strong> esta estrategia guarda los recursos enumerados al instalarse el service worker. Si un recurso no está en caché, se solicita a la red, pero no se almacena automáticamente.</p>
+        </aside>
+    </main>
+
+    <footer class="site-footer">
+        <span>PORTAFOLIO DE EJERCICIOS PWA</span>
+        <span>EJERCICIO 04 <span aria-hidden="true">·</span> CACHE API</span>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --header-height: 64px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #0E3A7E, #1E5BB1);
+  color: white;
+  height: var(--header-height);
+  padding: 16px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header h1 {
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+/* MENÚ */
+.menu {
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: var(--header-height);
+  z-index: 999;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #0E3A7E;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  background: #0E3A7E;
+  color: white;
+}
+
+.menu a:focus-visible {
+  outline: 3px solid #1E5BB1;
+  outline-offset: 2px;
+}
+
+/* CONTENIDO */
+.content {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* 📱 RESPONSIVE TABLET */
+@media (max-width: 768px) {
+  .menu {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .menu a {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+/* 📱 RESPONSIVE MÓVIL */
+@media (max-width: 480px) {
+  .menu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .card {
+    border-radius: 10px;
+  }
+}
